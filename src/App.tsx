@@ -8,7 +8,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import About from "./pages/About";
-import OfficeBearers from "./pages/OfficeBearers";
+import Members from "./pages/Members";
 import Projects from "./pages/Projects";
 import Events from "./pages/Events";
 import Gallery from "./pages/Gallery";
@@ -29,7 +29,7 @@ const App = () => (
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
-              <Route path="/office-bearers" element={<OfficeBearers />} />
+              <Route path="/office-bearers" element={<Members />} />
               <Route path="/projects" element={<Projects />} />
               <Route path="/events" element={<Events />} />
               <Route path="/gallery" element={<Gallery />} />
