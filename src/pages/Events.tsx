@@ -7,94 +7,94 @@ import { Badge } from '@/components/ui/badge';
 const Events = () => {
   const upcomingEvents = [
     {
-      title: 'Annual Charity Gala',
+      title: 'Annual Rotary Charity Gala',
       date: '2024-04-15',
       time: '7:00 PM',
       location: 'Grand Hotel, Tiruchirappalli',
       image: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
-      description: 'Join us for an elegant evening of fundraising, fellowship, and celebrating our community impact.',
+      description: 'Exclusive fundraising event for Rotary members and distinguished guests.',
       category: 'Fundraising',
-      registration: 'Open'
+      registration: 'Members Only'
     },
     {
-      title: 'Blood Donation Camp',
-      date: '2024-04-20',
-      time: '9:00 AM',
-      location: 'Community Center, Anna Nagar',
-      image: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
-      description: 'Help save lives by donating blood. Free health check-up for all donors.',
-      category: 'Health',
-      registration: 'Open'
-    },
-    {
-      title: 'Youth Leadership Workshop',
+      title: 'Rotary Leadership Seminar',
       date: '2024-05-05',
       time: '10:00 AM',
-      location: 'PSG College of Technology',
+      location: 'Rotary Hall, Anna Nagar',
       image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
-      description: 'Empowering young minds with leadership skills and career guidance.',
+      description: 'Advanced leadership training exclusively for Rotary club members.',
       category: 'Education',
-      registration: 'Open'
+      registration: 'Members Only'
+    },
+    {
+      title: 'Monthly Fellowship Meeting',
+      date: '2024-04-25',
+      time: '6:30 PM',
+      location: 'Hotel Sangam',
+      image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+      description: 'Regular fellowship meeting for all Rotary club members.',
+      category: 'Fellowship',
+      registration: 'Members Only'
     }
   ];
 
   const completedEvents = [
     {
-      title: 'Tree Plantation Drive 2024',
+      title: 'Rotary District Conference 2024',
       date: '2024-03-10',
-      location: 'Uyyakondan Thirumalai',
-      image: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
-      description: 'Successfully planted 500 saplings with 100+ volunteers.',
-      category: 'Environment',
-      participants: '120+ volunteers',
-      impact: '500 trees planted'
+      location: 'Coimbatore Convention Center',
+      image: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+      description: 'Annual district-wide conference with Rotary clubs from across Tamil Nadu.',
+      category: 'Conference',
+      participants: '500+ Rotarians',
+      impact: 'Network strengthening achieved'
     },
     {
-      title: 'Digital Literacy Training',
+      title: 'Rotary Youth Exchange Program',
       date: '2024-02-25',
-      location: 'Senior Citizens Center',
-      image: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
-      description: 'Taught smartphone and internet basics to 50+ senior citizens.',
-      category: 'Education',
-      participants: '60+ seniors',
-      impact: 'Digital inclusion achieved'
+      location: 'Club Hall',
+      image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+      description: 'Orientation for young Rotarians participating in international exchange.',
+      category: 'Youth',
+      participants: '25+ youth',
+      impact: 'International exposure provided'
     },
     {
-      title: 'Community Health Camp',
+      title: 'Rotary Foundation Dinner',
       date: '2024-02-15',
-      location: 'Rural Health Center, Manachanallur',
-      image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
-      description: 'Free medical check-ups and medicines for rural community.',
-      category: 'Health',
-      participants: '200+ patients',
-      impact: 'Free healthcare provided'
+      location: 'Grand Hotel',
+      image: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+      description: 'Fundraising dinner exclusively for Rotary members and donors.',
+      category: 'Fundraising',
+      participants: '100+ members',
+      impact: '₹5 lakh raised for Foundation'
     },
     {
-      title: 'Women Empowerment Seminar',
+      title: 'Rotary Installation Ceremony',
       date: '2024-01-28',
-      location: 'Holy Cross College',
-      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
-      description: 'Inspiring women with entrepreneurship and leadership skills.',
-      category: 'Community',
-      participants: '150+ women',
-      impact: 'Skills development achieved'
+      location: 'Club Hall',
+      image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+      description: 'Installation of new office bearers for the year 2024-25.',
+      category: 'Ceremony',
+      participants: '80+ members',
+      impact: 'Leadership transition completed'
     },
     {
-      title: 'Educational Material Distribution',
+      title: 'Rotary Member Orientation',
       date: '2024-01-15',
-      location: 'Government Schools, Tiruchirappalli',
-      image: 'https://images.unsplash.com/photo-1497486751825-1233686d5d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
-      description: 'Distributed books, stationery, and school bags to underprivileged children.',
-      category: 'Education',
-      participants: '300+ students',
-      impact: 'Education support provided'
+      location: 'Club Hall',
+      image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+      description: 'Comprehensive orientation program for new Rotary members.',
+      category: 'Orientation',
+      participants: '15+ new members',
+      impact: 'Member integration achieved'
     },
     {
-      title: 'New Year Fellowship Meet',
+      title: 'Rotary Fellowship Night',
       date: '2024-01-07',
       location: 'Hotel Sangam',
       image: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
-      description: 'Annual fellowship gathering with members and families.',
+      description: 'New Year fellowship gathering with Rotary members and families.',
       category: 'Fellowship',
       participants: '80+ members',
       impact: 'Community bonding strengthened'
@@ -113,12 +113,13 @@ const Events = () => {
 
   const getCategoryColor = (category: string) => {
     const colors = {
-      'Health': 'bg-red-100 text-red-800',
-      'Education': 'bg-blue-100 text-blue-800',
-      'Environment': 'bg-green-100 text-green-800',
-      'Community': 'bg-purple-100 text-purple-800',
       'Fellowship': 'bg-yellow-100 text-yellow-800',
-      'Fundraising': 'bg-orange-100 text-orange-800'
+      'Education': 'bg-blue-100 text-blue-800',
+      'Conference': 'bg-purple-100 text-purple-800',
+      'Youth': 'bg-green-100 text-green-800',
+      'Fundraising': 'bg-orange-100 text-orange-800',
+      'Ceremony': 'bg-red-100 text-red-800',
+      'Orientation': 'bg-indigo-100 text-indigo-800'
     };
     return colors[category as keyof typeof colors] || 'bg-gray-100 text-gray-800';
   };
@@ -126,15 +127,15 @@ const Events = () => {
   return (
     <div>
       <Hero 
-        title="Events"
-        subtitle="Join Us • Learn • Serve • Celebrate"
+        title="Rotary Events"
+        subtitle="Members Only • Fellowship • Leadership • Service"
         backgroundImage="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
       />
 
       {/* Upcoming Events */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">Upcoming Events</h2>
+          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">Upcoming Rotary Events</h2>
           <div className="space-y-8">
             {upcomingEvents.map((event, index) => (
               <Card key={index} className="overflow-hidden">
@@ -151,7 +152,7 @@ const Events = () => {
                       <Badge className={getCategoryColor(event.category)}>
                         {event.category}
                       </Badge>
-                      <Badge variant="outline" className="border-green-500 text-green-700">
+                      <Badge variant="outline" className="border-red-500 text-red-700">
                         {event.registration}
                       </Badge>
                     </div>
@@ -170,9 +171,6 @@ const Events = () => {
                       <Button className="bg-blue-900 hover:bg-blue-800">
                         Register Now
                       </Button>
-                      <Button variant="outline">
-                        Learn More
-                      </Button>
                     </div>
                   </div>
                 </div>
@@ -185,7 +183,7 @@ const Events = () => {
       {/* Completed Events */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">Recent Events</h2>
+          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">Recent Rotary Events</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {completedEvents.map((event, index) => (
               <Card key={index} className="overflow-hidden">
@@ -221,22 +219,16 @@ const Events = () => {
         </div>
       </section>
 
-      {/* Event Calendar CTA */}
-      <section className="py-16 bg-blue-900 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-6">Stay Updated</h2>
-          <p className="text-xl text-blue-200 mb-8 max-w-2xl mx-auto">
-            Never miss an event! Subscribe to our newsletter or follow us on social media 
-            for the latest updates on upcoming events and activities.
+      {/* Calendar View */}
+      <section className="py-16 bg-white text-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">Event Calendar</h2>
+          <p className="text-lg text-gray-600 mb-8">
+            View all Rotary events in calendar format with R badges for easy identification.
           </p>
-          <div className="space-x-4">
-            <Button className="bg-yellow-400 text-blue-900 hover:bg-yellow-500">
-              Subscribe Newsletter
-            </Button>
-            <Button variant="outline" className="border-white text-white hover:bg-white hover:text-blue-900">
-              View Calendar
-            </Button>
-          </div>
+          <Button className="bg-blue-900 hover:bg-blue-800 text-white px-8 py-3 text-lg">
+            View Calendar
+          </Button>
         </div>
       </section>
     </div>

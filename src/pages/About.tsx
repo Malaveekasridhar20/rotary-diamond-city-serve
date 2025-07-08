@@ -4,6 +4,26 @@ import Card from '../components/Card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
 const About = () => {
+  const awards = [
+    { name: "Medical camps", emoji: "🥇" },
+    { name: "Platinum Presidential citation award", emoji: "🥇" },
+    { name: "Royal Vocational Service award", emoji: "🎖" },
+    { name: "Blood donation camp award", emoji: "🏅" },
+    { name: "Royal Community Service award", emoji: "🥉" },
+    { name: "100% contribution to TRF award", emoji: "🎖" },
+    { name: "Royal International Service award", emoji: "🥇" },
+    { name: "Tree plantation award", emoji: "🥉" },
+    { name: "Royal Public Image Service award", emoji: "🥇" },
+    { name: "Polio Rally award", emoji: "🥉" },
+    { name: "Royal Youth Service award", emoji: "🎖" },
+    { name: "Dhasavatharam Project awards", emoji: "🎖" },
+    { name: "Royal Supreme Star Award", emoji: "🥉" },
+    { name: "Royal Super Star President", emoji: "🎖" },
+    { name: "Royal Super Star Club", emoji: "🥇" },
+    { name: "Royal Super Star Secretary", emoji: "🥉" },
+    { name: "Royal Supreme Star Club", emoji: "🥇" }
+  ];
+
   const milestones = [
     { year: 1985, event: "Charter established for Rotary Club of Tiruchirappalli Diamond City" },
     { year: 1990, event: "First major community health camp organized" },
@@ -78,8 +98,31 @@ const About = () => {
         </div>
       </section>
 
-      {/* Mission & Vision */}
+      {/* Awards Section */}
       <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              ROTARY CLUB OF TIRUCHIRAPPALLI DIAMOND CITY
+            </h2>
+            <p className="text-xl text-blue-900 font-semibold">A Proud Recipient of 17 Prestigious Awards</p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-6xl mx-auto">
+            {awards.map((award, index) => (
+              <div key={index} className="bg-white rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow">
+                <div className="flex items-center space-x-3">
+                  <span className="text-2xl">{award.emoji}</span>
+                  <span className="font-medium text-gray-900">{award.name}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Mission & Vision */}
+      <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <Card className="p-8">
@@ -105,7 +148,7 @@ const About = () => {
       </section>
 
       {/* Road Tracks Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
             Road Tracks - Our Educational Partnerships
@@ -144,7 +187,7 @@ const About = () => {
       </section>
 
       {/* Timeline */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">Our Journey</h2>
           <Accordion type="single" collapsible className="max-w-4xl mx-auto">
