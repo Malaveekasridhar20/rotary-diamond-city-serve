@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -19,6 +18,7 @@ import AuthPage from "./components/auth/AuthPage";
 import AdminLayout from "./components/admin/AdminLayout";
 import AdminDashboard from "./components/admin/AdminDashboard";
 import ProtectedRoute from "./components/admin/ProtectedRoute";
+import React from "react";
 
 const queryClient = new QueryClient();
 
@@ -40,10 +40,26 @@ const App = () => (
               </ProtectedRoute>
             }>
               <Route index element={<AdminDashboard />} />
-              <Route path="projects" element={<div className="p-6">Projects Management - Coming Soon</div>} />
-              <Route path="events" element={<div className="p-6">Events Management - Coming Soon</div>} />
-              <Route path="members" element={<div className="p-6">Members Management - Coming Soon</div>} />
-              <Route path="messages" element={<div className="p-6">Messages Management - Coming Soon</div>} />
+              <Route path="projects" element={
+                <div className="lazy-load">
+                  {React.lazy(() => import('./components/admin/ProjectsManagement'))}
+                </div>
+              } />
+              <Route path="events" element={
+                <div className="lazy-load">
+                  {React.lazy(() => import('./components/admin/EventsManagement'))}
+                </div>
+              } />
+              <Route path="members" element={
+                <div className="lazy-load">
+                  {React.lazy(() => import('./components/admin/MembersManagement'))}
+                </div>
+              } />
+              <Route path="messages" element={
+                <div className="lazy-load">
+                  {React.lazy(() => import('./components/admin/MessagesManagement'))}
+                </div>
+              } />
               <Route path="settings" element={<div className="p-6">Settings - Coming Soon</div>} />
             </Route>
             
