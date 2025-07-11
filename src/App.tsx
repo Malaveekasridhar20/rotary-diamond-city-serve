@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -17,6 +18,10 @@ import NotFound from "./pages/NotFound";
 import AuthPage from "./components/auth/AuthPage";
 import AdminLayout from "./components/admin/AdminLayout";
 import AdminDashboard from "./components/admin/AdminDashboard";
+import ProjectsManagement from "./components/admin/ProjectsManagement";
+import EventsManagement from "./components/admin/EventsManagement";
+import MembersManagement from "./components/admin/MembersManagement";
+import MessagesManagement from "./components/admin/MessagesManagement";
 import ProtectedRoute from "./components/admin/ProtectedRoute";
 import React from "react";
 
@@ -40,26 +45,10 @@ const App = () => (
               </ProtectedRoute>
             }>
               <Route index element={<AdminDashboard />} />
-              <Route path="projects" element={
-                <div className="lazy-load">
-                  {React.lazy(() => import('./components/admin/ProjectsManagement'))}
-                </div>
-              } />
-              <Route path="events" element={
-                <div className="lazy-load">
-                  {React.lazy(() => import('./components/admin/EventsManagement'))}
-                </div>
-              } />
-              <Route path="members" element={
-                <div className="lazy-load">
-                  {React.lazy(() => import('./components/admin/MembersManagement'))}
-                </div>
-              } />
-              <Route path="messages" element={
-                <div className="lazy-load">
-                  {React.lazy(() => import('./components/admin/MessagesManagement'))}
-                </div>
-              } />
+              <Route path="projects" element={<ProjectsManagement />} />
+              <Route path="events" element={<EventsManagement />} />
+              <Route path="members" element={<MembersManagement />} />
+              <Route path="messages" element={<MessagesManagement />} />
               <Route path="settings" element={<div className="p-6">Settings - Coming Soon</div>} />
             </Route>
             
