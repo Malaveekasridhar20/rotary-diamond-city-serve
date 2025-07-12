@@ -22,6 +22,7 @@ import ProjectsManagement from "./components/admin/ProjectsManagement";
 import EventsManagement from "./components/admin/EventsManagement";
 import MembersManagement from "./components/admin/MembersManagement";
 import MessagesManagement from "./components/admin/MessagesManagement";
+import SettingsManagement from "./components/admin/SettingsManagement";
 import ProtectedRoute from "./components/admin/ProtectedRoute";
 import React from "react";
 
@@ -38,7 +39,7 @@ const App = () => (
             {/* Auth Route */}
             <Route path="/auth" element={<AuthPage />} />
             
-            {/* Admin Routes - Protected */}
+            {/* Admin Routes - Protected and Complete */}
             <Route path="/admin/*" element={
               <ProtectedRoute requireAdmin>
                 <AdminLayout />
@@ -49,16 +50,7 @@ const App = () => (
               <Route path="events" element={<EventsManagement />} />
               <Route path="members" element={<MembersManagement />} />
               <Route path="messages" element={<MessagesManagement />} />
-              <Route path="settings" element={
-                <div className="p-6 bg-gray-50 min-h-screen">
-                  <div className="max-w-4xl mx-auto">
-                    <h1 className="text-2xl font-bold text-gray-900 mb-4">Settings</h1>
-                    <div className="bg-white rounded-lg p-6 shadow-sm border">
-                      <p className="text-gray-600">Settings panel coming soon...</p>
-                    </div>
-                  </div>
-                </div>
-              } />
+              <Route path="settings" element={<SettingsManagement />} />
             </Route>
             
             {/* Public Routes */}

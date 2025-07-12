@@ -3,7 +3,7 @@ import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { FolderOpen, Calendar, Users, MessageSquare, Activity, TrendingUp, Plus } from 'lucide-react';
+import { FolderOpen, Calendar, Users, MessageSquare, Activity, TrendingUp, Plus, BarChart3, Settings } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
 
@@ -17,19 +17,22 @@ const AdminDashboard = () => {
         { count: projectsCount },
         { count: eventsCount },
         { count: membersCount },
-        { count: messagesCount }
+        { count: messagesCount },
+        { count: unreadMessagesCount }
       ] = await Promise.all([
         supabase.from('projects').select('*', { count: 'exact', head: true }),
         supabase.from('events').select('*', { count: 'exact', head: true }),
         supabase.from('pst_members').select('*', { count: 'exact', head: true }),
-        supabase.from('contact_messages').select('*', { count: 'exact', head: true })
+        supabase.from('contact_messages').select('*', { count: 'exact', head: true }),
+        supabase.from('contact_messages').select('*', { count: 'exact', head: true }).eq('is_read', false)
       ]);
 
       return {
         projects: projectsCount || 0,
         events: eventsCount || 0,
         members: membersCount || 0,
-        messages: messagesCount || 0
+        messages: messagesCount || 0,
+        unreadMessages: unreadMessagesCount || 0
       };
     }
   });
@@ -95,7 +98,7 @@ const AdminDashboard = () => {
       icon: MessageSquare,
       color: 'text-orange-600',
       bgColor: 'bg-orange-50',
-      description: 'Contact inquiries',
+      description: `${stats?.unreadMessages || 0} unread`,
       route: '/admin/messages'
     }
   ];
@@ -125,11 +128,15 @@ const AdminDashboard = () => {
               <Activity className="w-8 h-8 text-primary" />
               <h1 className="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
             </div>
-            <p className="text-gray-600">Rotary Club of Tiruchirappalli Diamond City</p>
+            <p className="text-gray-600">Rotary Club of Tiruchirappalli Diamond City - Complete Website Management</p>
             <div className="mt-2 px-3 py-1 bg-primary/10 text-primary text-sm rounded-full inline-flex items-center gap-2">
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              System Active
+              System Online & Ready
             </div>
+          </div>
+          <div className="text-right">
+            <p className="text-sm text-gray-500">Last updated</p>
+            <p className="text-lg font-semibold">{new Date().toLocaleString()}</p>
           </div>
         </div>
       </div>
@@ -230,6 +237,11 @@ const AdminDashboard = () => {
               <div className="flex items-center gap-2">
                 <MessageSquare className="w-5 h-5" />
                 Recent Messages
+                {stats?.unreadMessages && stats.unreadMessages > 0 && (
+                  <span className="bg-red-500 text-white text-xs px-2 py-1 rounded-full">
+                    {stats.unreadMessages}
+                  </span>
+                )}
               </div>
               <Button 
                 variant="outline" 
@@ -274,14 +286,14 @@ const AdminDashboard = () => {
         </Card>
       </div>
 
-      {/* Quick Actions */}
+      {/* Quick Actions - Website Management */}
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <TrendingUp className="w-5 h-5" />
-            Quick Actions
+            Complete Website Management
           </CardTitle>
-          <CardDescription>Common administrative tasks</CardDescription>
+          <CardDescription>All tools you need to manage your Rotary Club website</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -291,7 +303,10 @@ const AdminDashboard = () => {
               onClick={() => navigate('/admin/projects')}
             >
               <FolderOpen className="w-8 h-8 text-gray-400" />
-              <span className="text-sm font-medium">Manage Projects</span>
+              <div className="text-center">
+                <span className="text-sm font-medium block">Manage Projects</span>
+                <span className="text-xs text-gray-500">Add, edit & delete projects</span>
+              </div>
             </Button>
             <Button 
               variant="outline" 
@@ -299,7 +314,10 @@ const AdminDashboard = () => {
               onClick={() => navigate('/admin/events')}
             >
               <Calendar className="w-8 h-8 text-gray-400" />
-              <span className="text-sm font-medium">Schedule Event</span>
+              <div className="text-center">
+                <span className="text-sm font-medium block">Schedule Events</span>
+                <span className="text-xs text-gray-500">Create & manage events</span>
+              </div>
             </Button>
             <Button 
               variant="outline" 
@@ -307,7 +325,10 @@ const AdminDashboard = () => {
               onClick={() => navigate('/admin/members')}
             >
               <Users className="w-8 h-8 text-gray-400" />
-              <span className="text-sm font-medium">Manage PST Members</span>
+              <div className="text-center">
+                <span className="text-sm font-medium block">PST Members</span>
+                <span className="text-xs text-gray-500">Manage team profiles</span>
+              </div>
             </Button>
             <Button 
               variant="outline" 
@@ -315,11 +336,51 @@ const AdminDashboard = () => {
               onClick={() => navigate('/admin/messages')}
             >
               <MessageSquare className="w-8 h-8 text-gray-400" />
-              <span className="text-sm font-medium">View Messages</span>
+              <div className="text-center">
+                <span className="text-sm font-medium block">Messages Inbox</span>
+                <span className="text-xs text-gray-500">Contact form responses</span>
+              </div>
             </Button>
           </div>
         </CardContent>
       </Card>
+
+      {/* System Status */}
+      <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+        <Card>
+          <CardContent className="p-4">
+            <div className="flex items-center gap-3">
+              <BarChart3 className="w-5 h-5 text-green-600" />
+              <div>
+                <p className="text-sm font-medium">System Status</p>
+                <p className="text-xs text-gray-500">All systems operational</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent className="p-4">
+            <div className="flex items-center gap-3">
+              <Activity className="w-5 h-5 text-blue-600" />
+              <div>
+                <p className="text-sm font-medium">Data Sync</p>
+                <p className="text-xs text-gray-500">Real-time updates active</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent className="p-4">
+            <div className="flex items-center gap-3">
+              <Settings className="w-5 h-5 text-purple-600" />
+              <div>
+                <p className="text-sm font-medium">Admin Access</p>
+                <p className="text-xs text-gray-500">Secure & protected</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 };
