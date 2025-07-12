@@ -3,9 +3,13 @@ import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { FolderOpen, Calendar, Users, MessageSquare, Activity, TrendingUp } from 'lucide-react';
+import { FolderOpen, Calendar, Users, MessageSquare, Activity, TrendingUp, Plus } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { useNavigate } from 'react-router-dom';
 
 const AdminDashboard = () => {
+  const navigate = useNavigate();
+
   const { data: stats, isLoading } = useQuery({
     queryKey: ['admin-stats'],
     queryFn: async () => {
@@ -64,7 +68,8 @@ const AdminDashboard = () => {
       icon: FolderOpen,
       color: 'text-blue-600',
       bgColor: 'bg-blue-50',
-      description: 'Active projects'
+      description: 'Active projects',
+      route: '/admin/projects'
     },
     {
       title: 'Total Events',
@@ -72,7 +77,8 @@ const AdminDashboard = () => {
       icon: Calendar,
       color: 'text-green-600',
       bgColor: 'bg-green-50',
-      description: 'Scheduled events'
+      description: 'Scheduled events',
+      route: '/admin/events'
     },
     {
       title: 'PST Members',
@@ -80,7 +86,8 @@ const AdminDashboard = () => {
       icon: Users,
       color: 'text-purple-600',
       bgColor: 'bg-purple-50',
-      description: 'Team members'
+      description: 'Team members',
+      route: '/admin/members'
     },
     {
       title: 'Messages',
@@ -88,13 +95,14 @@ const AdminDashboard = () => {
       icon: MessageSquare,
       color: 'text-orange-600',
       bgColor: 'bg-orange-50',
-      description: 'Contact inquiries'
+      description: 'Contact inquiries',
+      route: '/admin/messages'
     }
   ];
 
   if (isLoading) {
     return (
-      <div className="p-6 bg-gray-50 min-h-screen">
+      <div className="min-h-screen bg-gray-50 p-6">
         <div className="animate-pulse">
           <div className="h-8 bg-gray-200 rounded w-1/4 mb-6"></div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -108,26 +116,34 @@ const AdminDashboard = () => {
   }
 
   return (
-    <div className="p-6 bg-gray-50 min-h-screen">
-      {/* Header */}
+    <div className="min-h-screen bg-gray-50 p-6">
+      {/* Welcome Header */}
       <div className="mb-8">
-        <div className="flex items-center gap-3 mb-2">
-          <Activity className="w-8 h-8 text-primary" />
-          <h1 className="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
-        </div>
-        <p className="text-gray-600">Welcome to the Rotary Club Admin Panel</p>
-        <div className="mt-2 px-3 py-1 bg-primary/10 text-primary text-sm rounded-full inline-flex items-center gap-2">
-          <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-          System Active
+        <div className="flex items-center justify-between">
+          <div>
+            <div className="flex items-center gap-3 mb-2">
+              <Activity className="w-8 h-8 text-primary" />
+              <h1 className="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
+            </div>
+            <p className="text-gray-600">Rotary Club of Tiruchirappalli Diamond City</p>
+            <div className="mt-2 px-3 py-1 bg-primary/10 text-primary text-sm rounded-full inline-flex items-center gap-2">
+              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+              System Active
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Stats Cards */}
+      {/* Statistics Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         {statCards.map((stat) => {
           const Icon = stat.icon;
           return (
-            <Card key={stat.title} className="hover:shadow-lg transition-shadow">
+            <Card 
+              key={stat.title} 
+              className="hover:shadow-lg transition-all cursor-pointer border-l-4 border-l-primary"
+              onClick={() => navigate(stat.route)}
+            >
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
@@ -146,13 +162,23 @@ const AdminDashboard = () => {
       </div>
 
       {/* Dashboard Content Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
         {/* Upcoming Events */}
         <Card>
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Calendar className="w-5 h-5" />
-              Upcoming Events
+            <CardTitle className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Calendar className="w-5 h-5" />
+                Upcoming Events
+              </div>
+              <Button 
+                variant="outline" 
+                size="sm"
+                onClick={() => navigate('/admin/events')}
+              >
+                <Plus className="w-4 h-4 mr-1" />
+                Add Event
+              </Button>
             </CardTitle>
             <CardDescription>Events scheduled for the coming days</CardDescription>
           </CardHeader>
@@ -185,6 +211,13 @@ const AdminDashboard = () => {
               <div className="text-center py-8 text-gray-500">
                 <Calendar className="w-12 h-12 mx-auto mb-3 text-gray-300" />
                 <p>No upcoming events</p>
+                <Button 
+                  variant="outline" 
+                  className="mt-2"
+                  onClick={() => navigate('/admin/events')}
+                >
+                  Create First Event
+                </Button>
               </div>
             )}
           </CardContent>
@@ -193,9 +226,18 @@ const AdminDashboard = () => {
         {/* Recent Messages */}
         <Card>
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <MessageSquare className="w-5 h-5" />
-              Recent Messages
+            <CardTitle className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <MessageSquare className="w-5 h-5" />
+                Recent Messages
+              </div>
+              <Button 
+                variant="outline" 
+                size="sm"
+                onClick={() => navigate('/admin/messages')}
+              >
+                View All
+              </Button>
             </CardTitle>
             <CardDescription>Latest contact form submissions</CardDescription>
           </CardHeader>
@@ -233,37 +275,51 @@ const AdminDashboard = () => {
       </div>
 
       {/* Quick Actions */}
-      <div className="mt-8">
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <TrendingUp className="w-5 h-5" />
-              Quick Actions
-            </CardTitle>
-            <CardDescription>Common administrative tasks</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-              <button className="p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-primary hover:bg-primary/5 transition-colors text-center">
-                <FolderOpen className="w-8 h-8 mx-auto mb-2 text-gray-400" />
-                <p className="text-sm font-medium">Add New Project</p>
-              </button>
-              <button className="p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-primary hover:bg-primary/5 transition-colors text-center">
-                <Calendar className="w-8 h-8 mx-auto mb-2 text-gray-400" />
-                <p className="text-sm font-medium">Schedule Event</p>
-              </button>
-              <button className="p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-primary hover:bg-primary/5 transition-colors text-center">
-                <Users className="w-8 h-8 mx-auto mb-2 text-gray-400" />
-                <p className="text-sm font-medium">Add PST Member</p>
-              </button>
-              <button className="p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-primary hover:bg-primary/5 transition-colors text-center">
-                <MessageSquare className="w-8 h-8 mx-auto mb-2 text-gray-400" />
-                <p className="text-sm font-medium">View Messages</p>
-              </button>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <TrendingUp className="w-5 h-5" />
+            Quick Actions
+          </CardTitle>
+          <CardDescription>Common administrative tasks</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <Button 
+              variant="outline" 
+              className="h-auto p-6 flex flex-col items-center gap-3 hover:bg-primary/5 hover:border-primary"
+              onClick={() => navigate('/admin/projects')}
+            >
+              <FolderOpen className="w-8 h-8 text-gray-400" />
+              <span className="text-sm font-medium">Manage Projects</span>
+            </Button>
+            <Button 
+              variant="outline" 
+              className="h-auto p-6 flex flex-col items-center gap-3 hover:bg-primary/5 hover:border-primary"
+              onClick={() => navigate('/admin/events')}
+            >
+              <Calendar className="w-8 h-8 text-gray-400" />
+              <span className="text-sm font-medium">Schedule Event</span>
+            </Button>
+            <Button 
+              variant="outline" 
+              className="h-auto p-6 flex flex-col items-center gap-3 hover:bg-primary/5 hover:border-primary"
+              onClick={() => navigate('/admin/members')}
+            >
+              <Users className="w-8 h-8 text-gray-400" />
+              <span className="text-sm font-medium">Manage PST Members</span>
+            </Button>
+            <Button 
+              variant="outline" 
+              className="h-auto p-6 flex flex-col items-center gap-3 hover:bg-primary/5 hover:border-primary"
+              onClick={() => navigate('/admin/messages')}
+            >
+              <MessageSquare className="w-8 h-8 text-gray-400" />
+              <span className="text-sm font-medium">View Messages</span>
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   );
 };

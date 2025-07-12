@@ -49,7 +49,16 @@ const App = () => (
               <Route path="events" element={<EventsManagement />} />
               <Route path="members" element={<MembersManagement />} />
               <Route path="messages" element={<MessagesManagement />} />
-              <Route path="settings" element={<div className="p-6">Settings - Coming Soon</div>} />
+              <Route path="settings" element={
+                <div className="p-6 bg-gray-50 min-h-screen">
+                  <div className="max-w-4xl mx-auto">
+                    <h1 className="text-2xl font-bold text-gray-900 mb-4">Settings</h1>
+                    <div className="bg-white rounded-lg p-6 shadow-sm border">
+                      <p className="text-gray-600">Settings panel coming soon...</p>
+                    </div>
+                  </div>
+                </div>
+              } />
             </Route>
             
             {/* Public Routes */}
