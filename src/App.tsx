@@ -38,8 +38,8 @@ const App = () => (
             {/* Auth Route */}
             <Route path="/auth" element={<AuthPage />} />
             
-            {/* Admin Routes */}
-            <Route path="/admin" element={
+            {/* Admin Routes - Protected */}
+            <Route path="/admin/*" element={
               <ProtectedRoute requireAdmin>
                 <AdminLayout />
               </ProtectedRoute>

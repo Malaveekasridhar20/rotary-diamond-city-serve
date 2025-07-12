@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
@@ -13,8 +13,17 @@ const AuthPage = () => {
   const [password, setPassword] = useState('');
   const [fullName, setFullName] = useState('');
   const [loading, setLoading] = useState(false);
-  const { signIn, signUp } = useAuth();
+  const { signIn, signUp, user, isAdmin } = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Redirect authenticated admin users to admin dashboard
+    if (user && isAdmin) {
+      navigate('/admin');
+    } else if (user && !isAdmin) {
+      navigate('/');
+    }
+  }, [user, isAdmin, navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,7 +36,7 @@ const AuthPage = () => {
           toast.error(error.message);
         } else {
           toast.success('Signed in successfully!');
-          navigate('/admin');
+          // Navigation will be handled by useEffect
         }
       } else {
         const { error } = await signUp(email, password, fullName);
