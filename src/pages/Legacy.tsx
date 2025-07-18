@@ -105,15 +105,8 @@ const Legacy = () => {
             <h2 className="text-4xl font-bold mb-8" style={{ color: '#002B7F' }}>
               A Rich Heritage of Service
             </h2>
-            <p className="text-lg text-gray-700 leading-relaxed mb-6">
-              For nearly four decades, the Rotary Club of Tiruchirappalli Diamond City has stood as a beacon 
-              of hope, service, and community transformation. Our journey began in 1985 with a simple yet 
-              powerful vision: to create positive change in our community and beyond.
-            </p>
             <p className="text-lg text-gray-700 leading-relaxed">
-              From our humble beginnings with 25 charter members to our current strength of 75+ active Rotarians, 
-              we have consistently lived by our motto "Service Above Self." Our legacy is written in the countless 
-              lives we've touched, the communities we've uplifted, and the leaders we've nurtured.
+              The Rotary Club of Tiruchirappalli Diamond City, chartered in 1985, stands as a pillar of selfless service and impactful leadership in RID 3000. With a legacy rooted in "Service Above Self," the club has pioneered numerous health camps, literacy initiatives, community development projects, and youth engagement programs. Over the decades, it has grown into a vibrant institution of changemakers, consistently earning accolades for its commitment to society. This legacy continues to inspire new generations of Rotarians to carry forward the torch of service, compassion, and transformation in every corner of Tiruchirappalli and beyond.
             </p>
           </div>
         </div>
