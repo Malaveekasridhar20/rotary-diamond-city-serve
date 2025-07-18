@@ -92,11 +92,14 @@ const Legacy = () => {
   return (
     <div>
       {/* Hero Section */}
-      <Hero 
-        title="Legacy of Rotary Club of Tiruchirappalli Diamond City"
-        subtitle="Four Decades of Service • Countless Lives Changed • Endless Possibilities"
-        backgroundImage="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
-      />
+      <section className="relative py-24 bg-blue-900 text-white text-center">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6">Legacy of RTDC</h1>
+          <p className="text-lg md:text-xl leading-relaxed">
+            The Rotary Club of Tiruchirappalli Diamond City, chartered in 1985, stands as a pillar of selfless service and impactful leadership in RID 3000. With a legacy rooted in "Service Above Self," the club has pioneered numerous health camps, literacy initiatives, community development projects, and youth engagement programs. Over the decades, it has grown into a vibrant institution of changemakers, consistently earning accolades for its commitment to society. This legacy continues to inspire new generations of Rotarians to carry forward the torch of service, compassion, and transformation in every corner of Tiruchirappalli and beyond.
+          </p>
+        </div>
+      </section>
 
       {/* Introduction */}
       <section className="py-16 bg-white">
